@@ -69,13 +69,9 @@ http {
 	##
 	server {
 	listen 80;
-	location = /hello/ {
-	proxy_pass http://﻿0.0.0.0:8080;
-	}
-	server {
-	listen 8080;
-	location = / {
-	proxy_pass http://﻿0.0.0.0:8080;
+	server_name localhost;
+	location / {
+	proxy_pass http://0.0.0.0:8080;
 	}
 	}
 	include /etc/nginx/conf.d/*.conf;
