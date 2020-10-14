@@ -9,13 +9,13 @@ class Question(models.Model):
 	text = models.TextField()
 	added_at = models.DateTimeField(auto_now_add=True)
 	rating = models.IntegerField(default=0)
-	author = models.CharField()
+	author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 	likes = models.ManyToManyField(User, related_name='question_like_user')
 class Answer(models.Model):
 	text = models.TextField()
 	added_at = models.DateTimeField(auto_now_add=True)
-	question = models.TextField()
-	author = models.CharField()
+	question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)()
+	author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 class QuestionManager(models.Manager):
 	def new(self):
 		return self.orger_by('-added_at')
